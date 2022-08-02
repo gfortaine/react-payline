@@ -43,8 +43,24 @@ const PaylineProvider: React.ComponentType<PropsType> = ({ production = false, c
     }
   }, [stylesheetUrl]);
 
+  // https://stackoverflow.com/a/44050222
+  const css = `
+    #PaylineWidget #pl-mgr-paymentMethodList-layout .pl-paymentMethodLayout-view:not(:first-child) {
+      display: none;
+    }
+    
+    #PaylineWidget span.pl-card-logo.pl-custom {
+      background-image: initial;
+    }
+  `;
+
   // render children
-  return <>{children}</>;
+  return (
+    <>
+      <style>{css}</style>
+      {children}
+    </>
+  );
 };
 
 export default PaylineProvider;
